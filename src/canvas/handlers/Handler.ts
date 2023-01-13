@@ -2,6 +2,8 @@ import { fabric } from 'fabric';
 import { union } from 'lodash';
 import { uuid } from 'uuidv4';
 import warning from 'warning';
+import { jsPDF } from "jspdf";
+
 import {
 	AlignmentHandler,
 	AnimationHandler,
@@ -1799,6 +1801,7 @@ class Handler implements HandlerOptions {
 		this.zoomHandler.zoomOneToOne();
 
 		const { left, top, width, height } = this.workarea;
+
 		const dataUrl = this.canvas.toDataURL({
 			...option,
 			left,
@@ -1808,10 +1811,19 @@ class Handler implements HandlerOptions {
 			enableRetinaScaling: true,
 		});
 
-		if (dataUrl) {
+        const download = `${option.name}.${option.format}`;
+
+        if (option.format === 'pdf'){
+            const pdf = new jsPDF('p', 'mm', "a4");
+
+            //@ts-ignore
+            pdf.addImage(dataUrl, 'png', 0, 0)
+
+            pdf.save(download);
+        } else if (dataUrl) {
 			const anchorEl = document.createElement('a');
 			anchorEl.href = dataUrl;
-			anchorEl.download = `${option.name}.png`;
+			anchorEl.download = download;
 			document.body.appendChild(anchorEl);
 			anchorEl.click();
 			anchorEl.remove();

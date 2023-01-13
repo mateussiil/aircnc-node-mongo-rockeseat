@@ -601,6 +601,9 @@ class ImageMapEditor extends Component {
 		onSaveImage: () => {
 			this.canvasRef.handler.saveCanvasImage();
 		},
+        onSavePdf: () => {
+            this.canvasRef.handler.saveCanvasImage({ name: 'New PDF', format: 'pdf', quality: 1 });
+        }
 	};
 
 	transformList = () => {
@@ -653,6 +656,7 @@ class ImageMapEditor extends Component {
 			onChangeStyles,
 			onChangeDataSources,
 			onSaveImage,
+            onSavePdf
 		} = this.handlers;
 		const action = (
 			<React.Fragment>
@@ -699,6 +703,14 @@ class ImageMapEditor extends Component {
 					onClick={onSaveImage}
 					tooltipPlacement="bottomRight"
 				/>
+                <CommonButton
+                    className="rde-action-btn"
+                    shape="circle"
+                    icon="file-pdf"
+                    tooltipTitle={"Save PDF"}
+                    onClick={onSavePdf}
+                    tooltipPlacement="bottomRight"
+                />
 			</React.Fragment>
 		);
 		const titleContent = (
@@ -735,7 +747,7 @@ class ImageMapEditor extends Component {
 								this.canvasRef = c;
 							}}
 							className="rde-canvas"
-							minZoom={30}
+							minZoom={1}
 							maxZoom={500}
 							objectOption={defaultOption}
 							propertiesToInclude={propertiesToInclude}
