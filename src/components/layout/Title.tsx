@@ -45,48 +45,6 @@ class Title extends Component<IProps> {
 				flex="1"
 				alignItems="center"
 			>
-				<Flex style={{ marginLeft: 8 }} flex="0 1 auto">
-					<span style={{ color: '#fff', fontSize: 24, fontWeight: 500 }}>React Design Editor</span>
-					<Tooltip title={i18next.t('action.go-github')} overlayStyle={{ fontSize: 16 }}>
-						<Button
-							className="rde-action-btn"
-							style={{
-								color: 'white',
-							}}
-							shape="circle"
-							size="large"
-							onClick={this.handlers.goGithub}
-						>
-							<Icon name="github" prefix="fab" size={1.5} />
-						</Button>
-					</Tooltip>
-					<Tooltip title={i18next.t('action.go-docs')} overlayStyle={{ fontSize: 16 }}>
-						<Button
-							className="rde-action-btn"
-							style={{
-								color: 'white',
-							}}
-							shape="circle"
-							size="large"
-							onClick={this.handlers.goDocs}
-						>
-							<Icon name="book" prefix="fas" size={1.5} />
-						</Button>
-					</Tooltip>
-					<Tooltip title={i18next.t('action.shortcut-help')} overlayStyle={{ fontSize: 16 }}>
-						<Button
-							className="rde-action-btn"
-							style={{
-								color: 'white',
-							}}
-							shape="circle"
-							size="large"
-							onClick={this.handlers.showHelp}
-						>
-							<Icon name="question" prefix="fas" size={1.5} />
-						</Button>
-					</Tooltip>
-				</Flex>
 				<Flex style={{ marginLeft: 88 }}>
 					<Menu
 						mode="horizontal"
